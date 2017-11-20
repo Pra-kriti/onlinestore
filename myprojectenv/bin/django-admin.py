@@ -1,4 +1,4 @@
-#!/home/prakriti/Desktop/onlinestore/myprojectenv/bin/python
+#!/home/pi/Desktop/pahiran/code/myprojectenv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
