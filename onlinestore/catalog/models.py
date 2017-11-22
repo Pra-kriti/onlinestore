@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.utils.timezone import now
 from django.db import models
+from django.contrib import admin
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -22,9 +23,19 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.name
+
     @models.permalink
     def get_absolute_url(self):
         return ('catalog_category', () , {'category_slug':self.slug})
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    search_fields=['name', 'slug', 'description', 'id']
+    list_display = ('name', 'slug', 'description', 'id')
+    list_display_links = ('name', 'slug', 'description', 'id')
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255,unique=True)
@@ -33,23 +44,28 @@ class Product(models.Model):
     sku = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=9,decimal_places=2)
     old_price = models.DecimalField(max_digits=9,decimal_places=2,blank=True,default=0.00)
-    image = models.CharField(max_length=50)
+    image = models.ImageField(null=True, blank=True, upload_to='./static/product_img', default='img/def.jpg')
     is_active = models.BooleanField(default=True)
     is_bestseller = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
     is_onsale = models.BooleanField(default=False)
     quantity = models.IntegerField()
     description = models.TextField()
+    color=models.CharField(max_length=50, default='None')
+    features=models.TextField(max_length=255, default='None')
     meta_keywords = models.CharField(max_length=255)
     meta_description = models.CharField(max_length=255)
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now)
     updated_by = models.CharField(max_length=50)
-    categories = models.ManyToManyField(Category)
+    categories = models.ForeignKey(Category)
 
     class Meta:
         db_table = 'products'
         ordering = ['-created_at']
+
+    def __str__(self):
+        return self.name
 
     def __unicode__(self):
         return self.name
@@ -63,3 +79,18 @@ class Product(models.Model):
             return self.price
         else:
             return None
+
+
+class ProductAdmin(admin.ModelAdmin):
+    search_fields=['name', 'brand', 'sku', 'features']
+    list_display=('id','name', 'brand', 'sku', 'quantity', 'brand')
+    list_display_links = ('id', 'name', 'brand', 'sku', 'quantity', 'brand')
+
+
+
+class Brand(models.Model):
+    name=models.CharField(max_length=50)
+
+
+    def __str__(self):
+        return name;

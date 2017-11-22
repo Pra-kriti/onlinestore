@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<center>
+<table class="table">
+    <tr>
+        <td><img src="{{item.image}}" width="256px" height="256px"></td>
+    </tr>
+    <tr>
+        <td>{{item.name}}</td>
+    </tr>
+     <tr>
+        <td>Rs. {{item.price}}</td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" class="btn btn-primary">Add to Cart</button>
+            <button type="button" class="btn btn-success">Checkout</button>
+        </td>
+
+    </tr>
+</table>
+</center>
+
+{% endblock %}
