@@ -37,10 +37,18 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display_links = ('name', 'slug', 'description', 'id')
 
 
+class Brand(models.Model):
+    name=models.CharField(max_length=50)
+
+
+    def __str__(self):
+        return self.name;
+
+
 class Product(models.Model):
     name = models.CharField(max_length=255,unique=True)
     slug = models.SlugField(max_length=255,unique=True)
-    brand = models.CharField(max_length=50)
+    brand = models.ForeignKey(Brand)
     sku = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=9,decimal_places=2)
     old_price = models.DecimalField(max_digits=9,decimal_places=2,blank=True,default=0.00)
@@ -82,15 +90,10 @@ class Product(models.Model):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    search_fields=['name', 'brand', 'sku', 'features']
-    list_display=('id','name', 'brand', 'sku', 'quantity', 'brand')
-    list_display_links = ('id', 'name', 'brand', 'sku', 'quantity', 'brand')
+    search_fields=['name', 'sku', 'features','brand__name']
+    list_display=('id','name', 'sku', 'quantity', 'brand')
+    list_display_links = ('id', 'name', 'sku', 'quantity')
 
 
 
-class Brand(models.Model):
-    name=models.CharField(max_length=50)
 
-
-    def __str__(self):
-        return name;
