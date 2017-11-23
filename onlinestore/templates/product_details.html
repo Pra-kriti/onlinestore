@@ -14,8 +14,13 @@
     </tr>
     <tr>
         <td>
-            <button type="button" class="btn btn-primary">Add to Cart</button>
-            <button type="button" class="btn btn-success">Checkout</button>
+
+            <form method="post" action="{{item.slug}}.html">
+                 {%csrf_token%}
+                <input type="hidden" name="product_slug" value="{{item.slug}}" >
+                <input type="submit" value="Add To Cart"  name="add-to-cart" id="start_submit" class="btn btn-primary"/>
+                <button type="button" class="btn btn-success">Checkout</button>
+            </form>
         </td>
 
     </tr>

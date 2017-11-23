@@ -1,15 +1,13 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from catalog.models import *
-def home_page(request):
-    featured=Product.objects.all()
-    return render(request, 'home_page.html', {'featured':featured})
+from cart.models import *
+from cart.views import _get_cart_items_count
+import random
 
-def detail_page(request, slug_):
-    product=Product.objects.filter(slug=slug_)
-    print(slug_)
-    print(product.count())
-    if product.count()<=0:
-        return HttpResponseRedirect('/')
-    return render(request, 'product_details.html', {'item':product[0]})
+def home_page(request):
+    items_cart=_get_cart_items_count(request)
+    featured=Product.objects.all()
+    return render(request, 'home_page.html', {'featured':featured, 'cart_count':items_cart})
+
 
