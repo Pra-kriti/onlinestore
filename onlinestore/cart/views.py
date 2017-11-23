@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
 from catalog.models import *
 from cart.models import *
+import random
 
 
 # Create your views here.
