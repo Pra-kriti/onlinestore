@@ -11,8 +11,9 @@ import random
 # Create your views here.
 #Display Cart Page
 def _cart_page(request):
+    count=_get_cart_items_count(request)
     cart_items=_get_cart_items(request)
-    return render(request, 'cart_page.html', {'cart':cart_items,'cart_count':cart_items.count()})
+    return render(request, 'cart_page.html', {'cart':cart_items,'cart_count':count})
 
 
 # If the user has not created cart id generate Cart ID for a Cart
