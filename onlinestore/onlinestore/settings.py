@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+# COOkie Age
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 2    # cookie age is set to 2 days.
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'checkout.apps.CheckoutConfig',
     'phonenumber_field',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
