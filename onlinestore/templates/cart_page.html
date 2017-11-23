@@ -13,7 +13,7 @@
         </tr>
         {% for item in cart %}
         <tr>
-            <td><img src="{{item.product.image.url}}" width="128px" height="128px"></td>
+            <td><img src="{% static item.image.url% }" width="128px" height="128px"></td>
             <td>{{item.product.name}}</td>
             <td>{{item.quantity}}</td>
             <td>{{item.product.price}}</td>
