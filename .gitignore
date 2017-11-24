@@ -1,2 +1,11 @@
 .idea/
-*.pyc
+onlinestore/cart/migrations/
+onlinestore/cart/__pycache__/
+onlinestore/catalog/migrations/
+onlinestore/catalog/__pycache__/
+onlinestore/checkout/migrations/
+onlinestore/checkout/__pycache__/
+onlinestore/onlinestore/migrations/
+onlinestore/onlinestore/__pycache__/
+
+
