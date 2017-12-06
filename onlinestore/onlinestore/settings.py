@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'cart.apps.CartConfig',
     'checkout.apps.CheckoutConfig',
+    'accounts.apps.AccountsConfig',
     'phonenumber_field',
     'mathfilters',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
