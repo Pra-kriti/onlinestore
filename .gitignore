@@ -1,4 +1,4 @@
-.idea
+/.idea
 /onlinestore/cart/migrations
 /onlinestore/cart/__pycache__
 /onlinestore/catalog/migrations
